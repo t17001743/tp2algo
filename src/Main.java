@@ -5,9 +5,19 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.Hashtable;
 
-public static void sort(ArrayList<Character> list)
 
 public class Main {
+
+    public static void transformStringIntoSortedArrayOfChar(String line){
+        ArrayList<Character> list = new ArrayList<>();
+        for(int i = 0; i < line.length(); i++){
+            list.add(line.charAt(i));
+        }
+        Collections.sort(list);
+        System.out.println(list);
+    }
+
+
     public static void main (String[] args) {
 
         try{
@@ -16,13 +26,7 @@ public class Main {
 
             while(scan.hasNextLine()){
                 String line = scan.nextLine();
-                ArrayList<Character> list = new ArrayList<>();
-
-                for(int i = 0; i < line.length(); i++){
-                    list.add(line.charAt(i));
-                }
-                Collections.sort(list);
-                System.out.println(list);
+                transformStringIntoSortedArrayOfChar(line);
             }
         }
         catch(FileNotFoundException e){
@@ -42,7 +46,6 @@ public class Main {
 
         // clear hash table h
         h.clear();
-
 
     }
 }
