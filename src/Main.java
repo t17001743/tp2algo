@@ -24,7 +24,23 @@ public class Main {
     }
 
 
-    public static void putDictCharInHashtable(ArrayList<Character> list){
+    public static boolean motIsInmotRepet(String mot, String motRepet){
+        ArrayList<Character> listLettresMotRepet = new ArrayList<>();
+
+        for(int i = 0; i < motRepet.length(); i++)
+            listLettresMotRepet.add(motRepet.charAt(i));
+
+        for(int i = 0; i < mot.length(); i++){
+            char c = mot.charAt(i);
+            int j = listLettresMotRepet.indexOf(c);
+            if(j >= 0) listLettresMotRepet.remove(j);
+            else return false;
+        }
+        return true;
+    }
+
+
+    /*public static void putDictCharInHashtable(ArrayList<Character> list){
         Hashtable<Integer, String> h = new Hashtable<Integer, String>();
         for(int i = 0; i < list.size(); i++){
             if(list.get(i) == list.get(i+1)){
@@ -35,7 +51,7 @@ public class Main {
             h.put(3, "");
         h.put(2, "");
         h.put(1, "");
-    }
+    }*/
 
 
     public static void main (String[] args) {
@@ -62,7 +78,12 @@ public class Main {
         System.out.println("Veuillez saisir un mot à répétitions R :");
         String motRepet = sc.nextLine();
 
-        foreach
+        /*for(String mot : listeMots){
+            if(mot)
+        }*/
+
+        /*boolean résultat = motIsInmotRepet("ddab", "abbadd");
+        System.out.println(résultat);*/
 
         listeMots.clear();
         hashMots.clear();
