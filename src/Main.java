@@ -21,7 +21,7 @@ public class Main {
     public static void main (String[] args) {
 
         try{
-            File DicoFile = new File("/amuhome/t17001743/IdeaProjects/tp2algo/minidico.txt");
+            File DicoFile = new File("/home/samantha/IdeaProjects/tp2algo/minidico.txt");
             Scanner scan = new Scanner(DicoFile);
 
             while(scan.hasNextLine()){
