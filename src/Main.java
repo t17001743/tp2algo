@@ -8,44 +8,64 @@ import java.util.Hashtable;
 
 public class Main {
 
-    public static void transformStringIntoSortedArrayOfChar(String line){
+    public static String sortString(String line){
         ArrayList<Character> list = new ArrayList<>();
         for(int i = 0; i < line.length(); i++){
             list.add(line.charAt(i));
         }
         Collections.sort(list);
-        System.out.println(list);
+        String s = new String();
+
+        for(int i = 0; i < list.size(); i++){
+            s += list.get(i);
+        }
+        System.out.println(s);
+        return s;
+    }
+
+
+    public static void putDictCharInHashtable(ArrayList<Character> list){
+        Hashtable<Integer, String> h = new Hashtable<Integer, String>();
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i) == list.get(i+1)){
+                h.put(i, "");
+            }
+
+        }
+            h.put(3, "");
+        h.put(2, "");
+        h.put(1, "");
     }
 
 
     public static void main (String[] args) {
 
+        Hashtable<String, String> hashMots = new Hashtable<>();
+        ArrayList<String> listeMots = new ArrayList<>();
+
         try{
-            File DicoFile = new File("/home/samantha/IdeaProjects/tp2algo/minidico.txt");
+            File DicoFile = new File("/home/samantha/IdeaProjects/tp2algo/minidico.txt");     // à changer
             Scanner scan = new Scanner(DicoFile);
 
             while(scan.hasNextLine()){
-                String line = scan.nextLine();
-                transformStringIntoSortedArrayOfChar(line);
+                String mot = scan.nextLine();
+                String motTrié = sortString(mot);
+                listeMots.add(mot);
+                hashMots.put(motTrié, mot);
             }
         }
         catch(FileNotFoundException e){
             System.out.println("Fichier non trouvé");
         }
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Veuillez saisir un mot à répétitions R :");
+        String motRepet = sc.nextLine();
 
+        foreach
 
-        Hashtable<Integer, String> h = new Hashtable<Integer, String>();
-
-        h.put(3, "");
-        h.put(2, "");
-        h.put(1, "");
-
-        // checking hash table h
-        System.out.println("" + h);
-
-        // clear hash table h
-        h.clear();
+        listeMots.clear();
+        hashMots.clear();
 
     }
 }
