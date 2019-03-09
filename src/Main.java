@@ -40,6 +40,27 @@ public class Main {
     }
 
 
+    static public String complémentaireDeMotPourmotRepet(String mot, String motRepet){
+        ArrayList<Character> listLettresMotRepet = new ArrayList<>();
+
+        for(int i = 0; i < motRepet.length(); i++)
+            listLettresMotRepet.add(motRepet.charAt(i));
+
+        for(int i = 0; i < mot.length(); i++){
+            char c = mot.charAt(i);
+            int j = listLettresMotRepet.indexOf(c);
+            if(j >= 0) listLettresMotRepet.remove(j);
+            else return "";
+        }
+        String s = new String();
+
+        for(int i = 0; i < listLettresMotRepet.size(); i++){
+            s += listLettresMotRepet.get(i);
+        }
+        return s;
+    }
+
+
     /*public static void putDictCharInHashtable(ArrayList<Character> list){
         Hashtable<Integer, String> h = new Hashtable<Integer, String>();
         for(int i = 0; i < list.size(); i++){
@@ -78,12 +99,18 @@ public class Main {
         System.out.println("Veuillez saisir un mot à répétitions R :");
         String motRepet = sc.nextLine();
 
-        /*for(String mot : listeMots){
-            if(mot)
-        }*/
+        for(String mot : listeMots){
+            if(!motIsInmotRepet(mot, motRepet)) continue;
+
+            String motComp = complémentaireDeMotPourmotRepet(mot, motRepet);
+            String résultat = hashMots.get(motComp);
+            if(résultat != null) System.out.println(résultat);
+        }
 
         /*boolean résultat = motIsInmotRepet("ddab", "abbadd");
         System.out.println(résultat);*/
+
+        //System.out.println(complémentaireDeMotPourmotRepet("ddab", "abbadd"));
 
         listeMots.clear();
         hashMots.clear();
