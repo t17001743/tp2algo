@@ -24,38 +24,38 @@ public class Main {
     }
 
 
-    public static boolean motIsInmotRepet(String mot, String motRepet){
-        ArrayList<Character> listLettresMotRepet = new ArrayList<>();
+    public static boolean wordIsInwordRepet(String word, String wordRepet){
+        ArrayList<Character> listLettersWordRepet = new ArrayList<>();
 
-        for(int i = 0; i < motRepet.length(); i++)
-            listLettresMotRepet.add(motRepet.charAt(i));
+        for(int i = 0; i < wordRepet.length(); i++)
+            listLettersWordRepet.add(wordRepet.charAt(i));
 
-        for(int i = 0; i < mot.length(); i++){
-            char c = mot.charAt(i);
-            int j = listLettresMotRepet.indexOf(c);
-            if(j >= 0) listLettresMotRepet.remove(j);
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            int j = listLettersWordRepet.indexOf(c);
+            if(j >= 0) listLettersWordRepet.remove(j);
             else return false;
         }
         return true;
     }
 
 
-    static public String complémentaireDeMotPourmotRepet(String mot, String motRepet){
-        ArrayList<Character> listLettresMotRepet = new ArrayList<>();
+    static public String complementaryOfWordForWordRepet(String word, String wordRepet){
+        ArrayList<Character> listLettersWordRepet = new ArrayList<>();
 
-        for(int i = 0; i < motRepet.length(); i++)
-            listLettresMotRepet.add(motRepet.charAt(i));
+        for(int i = 0; i < wordRepet.length(); i++)
+            listLettersWordRepet.add(wordRepet.charAt(i));
 
-        for(int i = 0; i < mot.length(); i++){
-            char c = mot.charAt(i);
-            int j = listLettresMotRepet.indexOf(c);
-            if(j >= 0) listLettresMotRepet.remove(j);
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            int j = listLettersWordRepet.indexOf(c);
+            if(j >= 0) listLettersWordRepet.remove(j);
             else return "";
         }
         String s = new String();
 
-        for(int i = 0; i < listLettresMotRepet.size(); i++){
-            s += listLettresMotRepet.get(i);
+        for(int i = 0; i < listLettersWordRepet.size(); i++){
+            s += listLettersWordRepet.get(i);
         }
         return s;
     }
@@ -78,17 +78,17 @@ public class Main {
     public static void main (String[] args) {
 
         Hashtable<String, String> hashMots = new Hashtable<>();
-        ArrayList<String> listeMots = new ArrayList<>();
+        ArrayList<String> listWords = new ArrayList<>();
 
         try{
             File DicoFile = new File("/home/samantha/IdeaProjects/tp2algo/minidico.txt");     // à changer
             Scanner scan = new Scanner(DicoFile);
 
             while(scan.hasNextLine()){
-                String mot = scan.nextLine();
-                String motTrié = sortString(mot);
-                listeMots.add(mot);
-                hashMots.put(motTrié, mot);
+                String word = scan.nextLine();
+                String sortedWord = sortString(word);
+                listWords.add(word);
+                hashMots.put(sortedWord, word);
             }
         }
         catch(FileNotFoundException e){
@@ -97,22 +97,22 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez saisir un mot à répétitions R :");
-        String motRepet = sc.nextLine();
+        String wordRepet = sc.nextLine();
 
-        for(String mot : listeMots){
-            if(!motIsInmotRepet(mot, motRepet)) continue;
+        for(String word : listWords){
+            if(!wordIsInwordRepet(word, wordRepet)) continue;
 
-            String motComp = complémentaireDeMotPourmotRepet(mot, motRepet);
-            String résultat = hashMots.get(motComp);
-            if(résultat != null) System.out.println(résultat);
+            String wordComplementary = complementaryOfWordForWordRepet(word, wordRepet);
+            String result = hashMots.get(wordComplementary);
+            if(result != null) System.out.println(result);
         }
 
-        /*boolean résultat = motIsInmotRepet("ddab", "abbadd");
+        /*boolean résultat = wordIsInwordRepet("ddab", "abbadd");
         System.out.println(résultat);*/
 
-        //System.out.println(complémentaireDeMotPourmotRepet("ddab", "abbadd"));
+        //System.out.println(complementaryOfWordForWordRepet("ddab", "abbadd"));
 
-        listeMots.clear();
+        listWords.clear();
         hashMots.clear();
 
     }
